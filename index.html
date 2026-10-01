@@ -107,6 +107,8 @@ section{padding:64px 0;border-top:1px solid var(--border)}
 /* diagram */
 figure.diagram{margin:0 0 28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;overflow-x:auto}
 figure.diagram svg{display:block;width:100%;min-width:640px;height:auto}
+.swipe{display:none;font-weight:600;color:var(--accent)}
+@media (max-width:700px){.swipe{display:inline}}
 figure.diagram figcaption{font-size:.84rem;color:var(--muted);margin-top:10px}
 svg .box{fill:var(--surface-2);stroke:var(--border)}
 svg .site{fill:none;stroke:var(--accent);stroke-dasharray:6 5}
@@ -167,8 +169,8 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
   <div class="wrap">
     <div class="eyebrow">Senior DevOps · SRE · Platform Engineering</div>
     <h1>Franklin Folefac Mbuaku</h1>
-    <div class="role">I build and run production platforms from bare metal up.</div>
-    <div class="aka">Also published as <b>Franklin Folefac</b> (LinkedIn) and <b>Mbuaku Franklin</b>. Same person. Based in Beaumont, California.</div>
+    <div class="role">I design, automate and operate reliable cloud and Kubernetes platforms.</div>
+    <div class="aka">Also published as <b>Franklin Folefac</b> (LinkedIn) and <b>Mbuaku Franklin</b>. Same person. Based in Beaumont, California · open to remote, hybrid or on-site roles.</div>
     <p class="summary">I'm a senior infrastructure engineer and team lead. I designed, automated and operate <b>ElitesCloud</b>, a two-site, highly available Kubernetes platform that runs 15+ live applications, including a production financial system. Every layer, from VMs and networking to the cluster, CI/CD, monitoring and databases, is defined as code and rebuilds from a single command. This site shows how it works, what broke, and what I changed afterward.</p>
     <ul class="tags">
       <li>Kubernetes</li><li>Terraform</li><li>Ansible</li><li>AWS</li><li>ArgoCD / GitOps</li><li>Jenkins</li><li>Prometheus · Grafana</li><li>CloudNativePG</li><li>Calico · BGP · VXLAN</li><li>Linux</li>
@@ -183,7 +185,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
     <div class="stats">
       <div class="stat"><b>2</b><span>geographic sites, one HA control plane</span></div>
       <div class="stat"><b>16</b><span>VMs: 13 K8s nodes + 3 external etcd</span></div>
-      <div class="stat"><b>43+</b><span>ArgoCD applications</span></div>
+      <div class="stat"><b>43+</b><span>ArgoCD-managed workloads: platform, observability, data and 15+ user-facing apps</span></div>
       <div class="stat"><b>~15–20 min</b><span>full rebuild from one command</span></div>
       <div class="stat"><b>40+</b><span>hostnames via Cloudflare Tunnel, zero open ports</span></div>
     </div>
@@ -250,7 +252,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
         <text class="sm" x="450" y="198" text-anchor="middle">Tailscale mesh</text>
         <text class="sm" x="450" y="211" text-anchor="middle">~15 ms between sites</text>
       </svg>
-      <figcaption>Simplified view. 3 external etcd members span both sites for quorum. Two API servers sit behind an HAProxy virtual IP. Calico (BGP + VXLAN) carries pod traffic across the Tailscale mesh.</figcaption>
+      <figcaption><span class="swipe">Scroll sideways to see Site B →<br></span>Simplified view. 3 external etcd members span both sites for quorum. Two API servers sit behind an HAProxy virtual IP. Calico (BGP + VXLAN) carries pod traffic across the Tailscale mesh.</figcaption>
     </figure>
 
     <div class="grid2">
@@ -259,7 +261,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
         <ul>
           <li>Terraform provisions the libvirt/KVM VMs and networks. Ansible bootstraps the OS, kubeadm, containerd and the cluster.</li>
           <li>The whole environment rebuilds with one command (<code>./deploy.sh apply</code>) in about 15–20 minutes.</li>
-          <li>Git is the single source of truth. No dashboard-only changes, so no drift.</li>
+          <li>Git is the source of truth. Infrastructure and application changes are committed as code, and GitOps reconciliation keeps configuration drift to a minimum.</li>
           <li>Kubernetes v1.29 on containerd. About 192 GB RAM across two physical hosts.</li>
         </ul>
       </div>
@@ -277,7 +279,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
         <ul>
           <li>GitHub → Jenkins (build, test, SonarQube) → Docker Hub → ArgoCD (deploy).</li>
           <li>Separation of duties: Jenkins never deploys, and ArgoCD is the only thing that changes the cluster.</li>
-          <li>43+ ArgoCD applications across environments and namespaces.</li>
+          <li>43+ ArgoCD applications covering platform services, observability, data infrastructure and 15+ user-facing apps, across environments and namespaces.</li>
           <li>Custom Jenkins agent images with Node.js, Docker Buildx and kubectl.</li>
         </ul>
       </div>
@@ -381,28 +383,37 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
   <div class="wrap">
     <div class="eyebrow">Experience</div>
     <h2>Career path</h2>
-    <p class="lede">I came up through software. I started in mobile development and digital products, moved into systems and infrastructure, and then specialized in CI/CD, Kubernetes and infrastructure automation. I have 10+ years in IT, including 7+ years focused on DevOps and platform work.</p>
-    <!-- TODO(Franklin): add exact start/end years to each entry so they match LinkedIn and your résumé. -->
+    <p class="lede">I came up through software. I spent five years building mobile apps and products, moved into infrastructure, and have worked full-time in DevOps/SRE since 2019. That's <b>12+ years in software and infrastructure</b>, including <b>7+ years in DevOps/SRE</b>.</p>
     <ol class="timeline">
       <li>
-        <div class="when">2025 – present</div>
-        <h3>Platform Architect &amp; Infrastructure Lead · Elites Systems</h3>
+        <div class="when">Sep 2024 – present</div>
+        <h3>Chief Architect &amp; Platform Strategist · Elites Systems</h3>
         <p>Founded Elites Systems, a cloud consulting company. I designed and run the ElitesCloud platform and the products on it.</p>
       </li>
       <li>
-        <div class="when">Current</div>
-        <h3>Senior DevOps / SRE Engineer, Team Lead · Dominion Systems</h3>
-        <p>I lead an 8-person team, have been project lead on several delivery projects, and own CI/CD, Kubernetes and infrastructure automation.</p>
-      </li>
-      <li>
-        <div class="when">Ongoing</div>
+        <div class="when">Oct 2024 – present</div>
         <h3>Founder &amp; Instructor · CloudMastersHub</h3>
-        <p>I teach Git, AWS, Kubernetes, Terraform and DevOps through a learning platform and YouTube channel. Mentoring and explaining systems clearly are a core part of how I work.</p>
+        <p>I teach Git, AWS, Kubernetes, Terraform and DevOps through live bootcamps, a learning platform and a YouTube channel. Mentoring and explaining systems clearly are a core part of how I work.</p>
       </li>
       <li>
-        <div class="when">Earlier</div>
-        <h3>Mobile developer &amp; team lead · Software and digital products</h3>
-        <p>Built Android apps and led an Android development team, plus web and design work. That's where my habits for automation and shipping came from.</p>
+        <div class="when">Jan 2021 – Apr 2025</div>
+        <h3>Senior DevOps / Site Reliability Engineer · Dominion Systems</h3>
+        <p>Led an 8-person team. Built and maintained AWS infrastructure with Terraform, CloudFormation and Ansible. Ran Kubernetes, GitOps delivery (ArgoCD, Flux, Flagger), Jenkins/Helm CI/CD, and observability with SLOs and error budgets.</p>
+      </li>
+      <li>
+        <div class="when">May 2019 – Jan 2021</div>
+        <h3>DevOps / Site Reliability Engineer · Dominion Systems</h3>
+        <p>Built and maintained cloud infrastructure and the automation pipelines that supported engineering operations.</p>
+      </li>
+      <li>
+        <div class="when">Feb 2017 – Apr 2019</div>
+        <h3>Infrastructure Engineer / Lead Mobile Developer · WaZaHUB</h3>
+        <p>Led Android development and took on infrastructure work. This was the bridge from building apps to running the systems behind them.</p>
+      </li>
+      <li>
+        <div class="when">Apr 2014 – Feb 2017</div>
+        <h3>Co-Founder &amp; Developer · Uni Developers</h3>
+        <p>Co-founded a development studio that built mobile apps, websites and digital products.</p>
       </li>
     </ol>
   </div>
@@ -413,18 +424,18 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
   <div class="wrap">
     <div class="eyebrow">Credentials</div>
     <h2>Certifications</h2>
-    <p class="lede">Each one links to a credential I can verify.</p>
+    <p class="lede">Verified through Credly. Both badges are issued to Franklin Folefac Mbuaku.</p>
     <div class="grid2">
       <div class="card cert">
         <span class="issuer">Amazon Web Services</span>
         <h3>AWS Certified Solutions Architect – Professional</h3>
-        <!-- TODO(Franklin): replace href with your Credly badge URL -->
+        <span class="issuer">Issued Sep 2024 · valid through Sep 2027</span>
         <a href="https://www.credly.com/badges/a4d988c2-2fef-4f2d-94b7-19d3fed73fb2/public_url" target="_blank" rel="noopener">Verify credential →</a>
       </div>
       <div class="card cert">
         <span class="issuer">CompTIA</span>
         <h3>CompTIA Security+ ce</h3>
-        <!-- TODO(Franklin): replace href with your Credly / CompTIA verification URL -->
+        <span class="issuer">Issued Oct 2025 · valid through Oct 2028</span>
         <a href="https://www.credly.com/badges/27fb714f-a244-4f0b-ad0e-4fd9590a3f60/public_url" target="_blank" rel="noopener">Verify credential →</a>
       </div>
     </div>
