@@ -1,104 +1,463 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<!--
-		This is the head session of mbuaku frank potfolio page
-	-->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Engineer Portfolio - Mbuaku Franklin</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 30px;
-            padding: 30px;
-            background-color: #f5f5f5;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Franklin Folefac Mbuaku | Senior DevOps / SRE / Platform Engineer</title>
+<meta name="description" content="Franklin Folefac Mbuaku (also Franklin Folefac, Mbuaku Franklin): Senior DevOps, SRE and Platform Engineer. Built and runs ElitesCloud, a two-site highly available Kubernetes platform managed with Terraform, Ansible and GitOps.">
+<meta name="author" content="Franklin Folefac Mbuaku">
+<link rel="canonical" href="https://mbuaku.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Franklin Folefac Mbuaku | Senior DevOps / SRE / Platform Engineer">
+<meta property="og:description" content="Case studies, incident reports and architecture from a two-site HA Kubernetes platform built and run end to end.">
+<meta property="og:url" content="https://mbuaku.github.io/">
+<meta name="twitter:card" content="summary">
 
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+<!-- Structured data: connects every name variant to one person for search engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Franklin Folefac Mbuaku",
+  "alternateName": ["Franklin Folefac", "Mbuaku Franklin", "Franklin Mbuaku", "Franklin F. Mbuaku", "Mbuaku Franklin Folefac"],
+  "jobTitle": "Senior DevOps / Site Reliability / Platform Engineer",
+  "url": "https://mbuaku.github.io/",
+  "email": "mailto:mbuaku@gmail.com",
+  "address": {"@type": "PostalAddress", "addressLocality": "Beaumont", "addressRegion": "CA", "addressCountry": "US"},
+  "sameAs": [
+    "https://www.linkedin.com/in/folefacfm/",
+    "https://github.com/elites-systems"
+  ],
+  "knowsAbout": ["Kubernetes", "Terraform", "Ansible", "AWS", "GitOps", "ArgoCD", "Site Reliability Engineering", "CI/CD", "Prometheus", "Linux"],
+  "hasCredential": [
+    {"@type": "EducationalOccupationalCredential", "name": "AWS Certified Solutions Architect – Professional", "credentialCategory": "certification"},
+    {"@type": "EducationalOccupationalCredential", "name": "CompTIA Security+ ce", "credentialCategory": "certification"}
+  ]
+}
+</script>
 
-        section {
-            margin-bottom: 30px;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-        h1, h2, h3 {
-            color: #333;
-        }
+<style>
+:root{
+  --bg:#f7f8fa; --surface:#ffffff; --surface-2:#eef1f5; --text:#14181f; --muted:#5a6473;
+  --border:#dde2e9; --accent:#0b6bcb; --accent-soft:#e3effb; --ok:#13804b; --warn:#a15c00; --bad:#b42318;
+  --mono:'JetBrains Mono',ui-monospace,monospace; --head:'Space Grotesk',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+  --radius:10px; --max:1040px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1117; --surface:#151b23; --surface-2:#1c2430; --text:#e6edf3; --muted:#9aa5b4;
+    --border:#2a3441; --accent:#5aa9f5; --accent-soft:#16283d; --ok:#4cc38a; --warn:#e3a33b; --bad:#f07167;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1117; --surface:#151b23; --surface-2:#1c2430; --text:#e6edf3; --muted:#9aa5b4;
+  --border:#2a3441; --accent:#5aa9f5; --accent-soft:#16283d; --ok:#4cc38a; --warn:#e3a33b; --bad:#f07167;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--head);line-height:1.2;margin:0}
+h2{font-size:1.75rem;margin-bottom:.4rem}
+h3{font-size:1.15rem}
+.eyebrow{font:500 .78rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+.lede{color:var(--muted);max-width:68ch;margin:.25rem 0 1.75rem}
+code,.mono{font-family:var(--mono);font-size:.88em}
 
-        p {
-            line-height: 1.5;
-            color: #555;
-        }
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+nav .brand{font:600 1rem var(--head);color:var(--text)}
+nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;font-size:.9rem}
+nav ul a{color:var(--muted)} nav ul a:hover{color:var(--text);text-decoration:none}
+@media (max-width:760px){nav ul{display:none}}
 
-        button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-        }
+/* hero */
+header.hero{padding:72px 0 48px}
+.hero h1{font-size:clamp(2.1rem,5vw,3.2rem);letter-spacing:-.02em}
+.hero .role{font:500 clamp(1.05rem,2.4vw,1.3rem) var(--head);color:var(--muted);margin:.6rem 0 1rem}
+.hero .aka{font-size:.88rem;color:var(--muted);margin-bottom:1.5rem}
+.hero p.summary{max-width:70ch;font-size:1.06rem}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:1.25rem 0 1.75rem;padding:0;list-style:none}
+.tags li{font:500 .78rem var(--mono);padding:5px 10px;border:1px solid var(--border);border-radius:999px;background:var(--surface)}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:8px;font-weight:600;font-size:.92rem;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:hover{text-decoration:none;filter:brightness(1.05)}
 
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:40px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.stat b{display:block;font:700 1.6rem var(--head)}
+.stat span{font-size:.84rem;color:var(--muted)}
+
+section{padding:64px 0;border-top:1px solid var(--border)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card h3{margin-bottom:.5rem}
+.card ul{margin:.25rem 0 0;padding-left:1.1rem} .card li{margin:.3rem 0}
+.card p{margin:.4rem 0}
+
+/* diagram */
+figure.diagram{margin:0 0 28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;overflow-x:auto}
+figure.diagram svg{display:block;width:100%;min-width:640px;height:auto}
+figure.diagram figcaption{font-size:.84rem;color:var(--muted);margin-top:10px}
+svg .box{fill:var(--surface-2);stroke:var(--border)}
+svg .site{fill:none;stroke:var(--accent);stroke-dasharray:6 5}
+svg .acc{fill:var(--accent-soft);stroke:var(--accent)}
+svg text{fill:var(--text);font-family:var(--body);font-size:13px}
+svg text.sm{font-size:11px;fill:var(--muted);font-family:var(--mono)}
+svg text.h{font-family:var(--head);font-weight:600;font-size:14px}
+svg line,svg path.ln{stroke:var(--muted);stroke-width:1.4;fill:none}
+
+/* incidents */
+.inc{border-left:3px solid var(--bad)}
+.inc .id{font:500 .8rem var(--mono);color:var(--bad)}
+.inc dl{margin:.6rem 0 0;display:grid;grid-template-columns:110px 1fr;gap:6px 12px;font-size:.94rem}
+.inc dt{font-weight:600;color:var(--muted)} .inc dd{margin:0}
+@media (max-width:560px){.inc dl{grid-template-columns:1fr}.inc dt{margin-top:6px}}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;font-size:.94rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.tbl th,.tbl td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+.tbl th{font:600 .78rem var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--surface-2)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{font-weight:600;white-space:nowrap}
+
+/* timeline */
+.timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--border)}
+.timeline li{position:relative;padding:0 0 26px 22px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.timeline .when{font:500 .8rem var(--mono);color:var(--muted)}
+.timeline h3{margin:.15rem 0 .3rem}
+.timeline p{margin:0;color:var(--muted);max-width:70ch}
+
+.cert{display:flex;flex-direction:column;gap:6px}
+.cert .issuer{font:500 .8rem var(--mono);color:var(--muted)}
+.skills dt{font:600 .8rem var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-top:14px}
+.skills dd{margin:4px 0 0}
+
+footer{padding:48px 0 64px;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+</style>
 </head>
-<!-- The body section starts here -->
 <body>
-	
-    <header>
-	    <button onclick="history.back()">Goto Home</button>
-        <h1>Mbuaku Franklin</h1>
-        <p>DevOps Engineer with a Decade of Experience</p>
-    </header>
 
-    <section>
-        <h2>About Me</h2>
-        <p>
-            I am a seasoned DevOps engineer with nearly a decade of experience in the field. My expertise spans a wide range of DevOps tools, including Linux coding, scripting, Git, Maven, Docker, Kubernetes, and DevOps pipelines. Throughout my career, I have primarily worked with the Dominion system, where I have served as a project lead for several successful projects. I am highly resourceful, adaptable, and always eager to embrace new technologies in this ever-evolving field.
-        </p>
-    </section>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Franklin F. Mbuaku</a>
+    <ul>
+      <li><a href="#elitescloud">Case study</a></li>
+      <li><a href="#incidents">Incidents</a></li>
+      <li><a href="#products">Workloads</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certs">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <section>
-        <h2>Skills</h2>
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">Senior DevOps · SRE · Platform Engineering</div>
+    <h1>Franklin Folefac Mbuaku</h1>
+    <div class="role">I build and run production platforms from bare metal up.</div>
+    <div class="aka">Also published as <b>Franklin Folefac</b> (LinkedIn) and <b>Mbuaku Franklin</b>. Same person. Based in Beaumont, California.</div>
+    <p class="summary">I'm a senior infrastructure engineer and team lead. I designed, automated and operate <b>ElitesCloud</b>, a two-site, highly available Kubernetes platform that runs 15+ live applications, including a production financial system. Every layer, from VMs and networking to the cluster, CI/CD, monitoring and databases, is defined as code and rebuilds from a single command. This site shows how it works, what broke, and what I changed afterward.</p>
+    <ul class="tags">
+      <li>Kubernetes</li><li>Terraform</li><li>Ansible</li><li>AWS</li><li>ArgoCD / GitOps</li><li>Jenkins</li><li>Prometheus · Grafana</li><li>CloudNativePG</li><li>Calico · BGP · VXLAN</li><li>Linux</li>
+    </ul>
+    <div class="cta">
+      <a class="btn primary" href="#elitescloud">Read the case study</a>
+      <a class="btn" href="https://www.linkedin.com/in/folefacfm/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/elites-systems" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="mailto:mbuaku@gmail.com">mbuaku@gmail.com</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>2</b><span>geographic sites, one HA control plane</span></div>
+      <div class="stat"><b>16</b><span>VMs: 13 K8s nodes + 3 external etcd</span></div>
+      <div class="stat"><b>43+</b><span>ArgoCD applications</span></div>
+      <div class="stat"><b>~15–20 min</b><span>full rebuild from one command</span></div>
+      <div class="stat"><b>40+</b><span>hostnames via Cloudflare Tunnel, zero open ports</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ CASE STUDY 1 ============ -->
+<section id="elitescloud">
+  <div class="wrap">
+    <div class="eyebrow">Case study 01</div>
+    <h2>ElitesCloud: from one VM to a two-site HA Kubernetes platform</h2>
+    <p class="lede">It started as a single Ubuntu VM and a fragile Vagrant setup. It's now a geographically split platform with an HA control plane, GitOps deployments, cross-site database replication and alerting that pages me. I treat it as production because it runs real workloads for real users.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 900 430" role="img" aria-labelledby="dgTitle">
+        <title id="dgTitle">ElitesCloud architecture: Cloudflare Tunnel in front of two sites joined by a Tailscale mesh, with an HAProxy VIP over two API servers and a three-member external etcd cluster.</title>
+        <!-- edge -->
+        <rect class="acc" x="270" y="14" width="360" height="50" rx="8"/>
+        <text class="h" x="450" y="36" text-anchor="middle">Cloudflare Tunnel (active-active)</text>
+        <text class="sm" x="450" y="54" text-anchor="middle">40+ hostnames · no public ports · origin health checks</text>
+        <path class="ln" d="M380 64 L200 110"/><path class="ln" d="M520 64 L700 110"/>
+
+        <!-- site A -->
+        <rect class="site" x="20" y="100" width="400" height="300" rx="12"/>
+        <text class="h" x="40" y="126">Site A</text>
+        <text class="sm" x="40" y="144">KVM/libvirt host</text>
+        <rect class="box" x="40" y="160" width="170" height="54" rx="6"/>
+        <text x="125" y="183" text-anchor="middle">kube-apiserver #1</text>
+        <text class="sm" x="125" y="201" text-anchor="middle">control plane</text>
+        <rect class="box" x="225" y="160" width="135" height="54" rx="6"/>
+        <text x="292" y="183" text-anchor="middle">etcd member(s)</text>
+        <text class="sm" x="292" y="201" text-anchor="middle">mTLS · external</text>
+        <rect class="box" x="40" y="230" width="360" height="54" rx="6"/>
+        <text x="220" y="253" text-anchor="middle">Worker nodes · NGINX Ingress · MetalLB</text>
+        <text class="sm" x="220" y="271" text-anchor="middle">topology spread across sites</text>
+        <rect class="box" x="40" y="300" width="360" height="54" rx="6"/>
+        <text x="220" y="323" text-anchor="middle">PostgreSQL (CloudNativePG) primary/replica</text>
+        <text class="sm" x="220" y="341" text-anchor="middle">streaming replication ⇄ Site B</text>
+        <text class="sm" x="40" y="385">Jenkins · ArgoCD · Prometheus stack · MinIO · Qdrant</text>
+
+        <!-- site B -->
+        <rect class="site" x="480" y="100" width="400" height="300" rx="12"/>
+        <text class="h" x="500" y="126">Site B</text>
+        <text class="sm" x="500" y="144">KVM/libvirt host</text>
+        <rect class="box" x="540" y="160" width="150" height="54" rx="6"/>
+        <text x="615" y="183" text-anchor="middle">kube-apiserver #2</text>
+        <text class="sm" x="615" y="201" text-anchor="middle">control plane</text>
+        <rect class="box" x="705" y="160" width="155" height="54" rx="6"/>
+        <text x="782" y="183" text-anchor="middle">etcd member(s)</text>
+        <text class="sm" x="782" y="201" text-anchor="middle">mTLS · external</text>
+        <rect class="box" x="500" y="230" width="360" height="54" rx="6"/>
+        <text x="680" y="253" text-anchor="middle">Worker nodes · NGINX Ingress · MetalLB</text>
+        <text class="sm" x="680" y="271" text-anchor="middle">topology spread across sites</text>
+        <rect class="box" x="500" y="300" width="360" height="54" rx="6"/>
+        <text x="680" y="323" text-anchor="middle">PostgreSQL (CloudNativePG) replica/primary</text>
+        <text class="sm" x="680" y="341" text-anchor="middle">streaming replication ⇄ Site A</text>
+        <text class="sm" x="500" y="385">Off-site backups · etcd snapshots · PagerDuty</text>
+
+        <!-- link -->
+        <rect class="acc" x="370" y="158" width="160" height="58" rx="8"/>
+        <text class="h" x="450" y="180" text-anchor="middle">HAProxy VIP</text>
+        <text class="sm" x="450" y="198" text-anchor="middle">Tailscale mesh</text>
+        <text class="sm" x="450" y="211" text-anchor="middle">~15 ms between sites</text>
+      </svg>
+      <figcaption>Simplified view. 3 external etcd members span both sites for quorum. Two API servers sit behind an HAProxy virtual IP. Calico (BGP + VXLAN) carries pod traffic across the Tailscale mesh.</figcaption>
+    </figure>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Infrastructure as Code</h3>
         <ul>
-            <li>Linux Coding and Scripting</li>
-            <li>Git Version Control</li>
-	    <li>AWS Architect</li>
-            <li>Maven</li>
-	    <li>Tomcat</li>
-	    <li>Jenkins</li>
-            <li>Docker</li>
-            <li>Kubernetes</li>
-	    <li>Ansible</li>
-	    <li>Terraform</li>
-	    <li>Python</li>
-	    <li>Promethes</li>
-	    <li>Grafana</li>
-            <li>DevOps Pipelines</li>
-            <li>Project Leadership</li>
-            <li>Problem Solving</li>
+          <li>Terraform provisions the libvirt/KVM VMs and networks. Ansible bootstraps the OS, kubeadm, containerd and the cluster.</li>
+          <li>The whole environment rebuilds with one command (<code>./deploy.sh apply</code>) in about 15–20 minutes.</li>
+          <li>Git is the single source of truth. No dashboard-only changes, so no drift.</li>
+          <li>Kubernetes v1.29 on containerd. About 192 GB RAM across two physical hosts.</li>
         </ul>
-    </section>
+      </div>
+      <div class="card">
+        <h3>Cross-site networking</h3>
+        <ul>
+          <li>Tailscale subnet routing joins the sites into one Layer 3 network (~15 ms).</li>
+          <li>Calico CNI with BGP and VXLAN for pod-to-pod traffic across sites.</li>
+          <li>Found and fixed a Tailscale/Calico SNAT conflict that broke pod routing. The fix is an iptables NAT exception that re-asserts itself automatically.</li>
+          <li>MetalLB and NGINX Ingress inside. Cloudflare Tunnel with active-active connectors outside.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>CI/CD and GitOps</h3>
+        <ul>
+          <li>GitHub → Jenkins (build, test, SonarQube) → Docker Hub → ArgoCD (deploy).</li>
+          <li>Separation of duties: Jenkins never deploys, and ArgoCD is the only thing that changes the cluster.</li>
+          <li>43+ ArgoCD applications across environments and namespaces.</li>
+          <li>Custom Jenkins agent images with Node.js, Docker Buildx and kubectl.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Data, backup and recovery</h3>
+        <ul>
+          <li>CloudNativePG with cross-site streaming replication. Moving off shared storage removed a single point of failure.</li>
+          <li>Runs PostgreSQL, MongoDB, Redis, Qdrant, MinIO and NFS.</li>
+          <li>Off-site backups: pg_dump, mongodump, etcd snapshots, Jenkins config and encrypted secrets.</li>
+          <li>Restore tests every month. PagerDuty alerts when a backup fails.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Observability</h3>
+        <ul>
+          <li>kube-prometheus-stack: Prometheus, Grafana, Alertmanager, node-exporter, kube-state-metrics.</li>
+          <li>Custom etcd alerting rules, with metrics scraped over mTLS.</li>
+          <li>PagerDuty escalation for production alerts.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Security and governance</h3>
+        <ul>
+          <li>Bitnami SealedSecrets, so encrypted secrets can live in Git.</li>
+          <li>Network policies, etcd mTLS and control-plane isolation.</li>
+          <li>Production-first policy: no placeholder credentials, no insecure dev shortcuts.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section>
-        <h2>Projects</h2>
-        <p>
-            During my career, I have successfully led and contributed to various projects in the DevOps domain. Some notable projects include A Command Line Management System, System Administration, and Project Source Control Managment. Each project involved the effective implementation of DevOps practices, resulting in improved efficiency and seamless collaboration among cross-functional teams.
-        </p>
-    </section>
+<!-- ============ INCIDENTS ============ -->
+<section id="incidents">
+  <div class="wrap">
+    <div class="eyebrow">Reliability engineering</div>
+    <h2>Incident reports</h2>
+    <p class="lede">Real outages on this platform, each with a root cause and a permanent fix. I learn the most from these, and they're the part I most want to talk about in interviews.</p>
+    <div class="grid3">
+      <article class="card inc">
+        <div class="id">INC-001</div>
+        <h3>Master VM killed by host memory overcommit</h3>
+        <dl>
+          <dt>Impact</dt><dd>The Linux OOM killer terminated the Kubernetes master VM, taking down the control plane.</dd>
+          <dt>Root cause</dt><dd>VM memory was overcommitted on the host, and nothing controlled where workloads landed.</dd>
+          <dt>Fix</dt><dd>Added host capacity, topology spread constraints, verified VM autostart, and automated health-check failover.</dd>
+        </dl>
+      </article>
+      <article class="card inc">
+        <div class="id">INC-002</div>
+        <h3>Remote filesystem ownership corruption</h3>
+        <dl>
+          <dt>Impact</dt><dd>A recursive ownership change ran against the wrong path on a remote host.</dd>
+          <dt>Root cause</dt><dd>An empty shell variable expanded inside a remote SSH command.</dd>
+          <dt>Fix</dt><dd>Wrote safety standards for destructive commands (<code>set -u</code>, guard checks) and moved critical remote work to idempotent Ansible.</dd>
+        </dl>
+      </article>
+      <article class="card inc">
+        <div class="id">INC-003</div>
+        <h3>API VIP race condition after reboot</h3>
+        <dl>
+          <dt>Impact</dt><dd>After a reboot, the Kubernetes API virtual IP never came up, so the cluster was unreachable.</dd>
+          <dt>Root cause</dt><dd>The VIP service started before the network bridge it depends on.</dd>
+          <dt>Fix</dt><dd>Added systemd dependency ordering, idempotent network setup, and checks that verify the node after boot.</dd>
+        </dl>
+      </article>
+    </div>
+    <p style="margin-top:20px"><a href="https://www.linkedin.com/in/folefacfm/recent-activity/articles/" target="_blank" rel="noopener">Read the full write-up: “How I Evolved a Single VM into a 2-Site Highly Available Kubernetes Platform” →</a></p>
+  </div>
+</section>
 
-    <section>
-        <h2>Contact</h2>
-        <p>
-            Feel free to reach out to me via email at <a href="mailto:mbuaku@gmail.com">mbuaku@gmail.com</a>. I'm open to discussions, collaboration, and exploring new opportunities in the DevOps space.
-        </p>
-    </section>
+<!-- ============ PRODUCTS ============ -->
+<section id="products">
+  <div class="wrap">
+    <div class="eyebrow">Case study 02</div>
+    <h2>What runs on the platform</h2>
+    <p class="lede">The platform hosts full-stack products I've built and operate. These give it real traffic, real data and real consequences when it fails.</p>
+    <div style="overflow-x:auto">
+    <table class="tbl">
+      <thead><tr><th>Product</th><th>What it is</th></tr></thead>
+      <tbody>
+        <tr><td>DBS Platform</td><td>A live financial contribution and savings system that handles real money in production.</td></tr>
+        <tr><td>CloudMastersHub</td><td>Learning platform for cloud and DevOps, built as microservices.</td></tr>
+        <tr><td>QuizElite</td><td>Assessment and test-prep engine with free and premium tiers.</td></tr>
+        <tr><td>DiscipleFlow</td><td>Operations and discipleship management platform for churches.</td></tr>
+        <tr><td>EliteStudio</td><td>Multi-tenant AI content studio with automated workflows.</td></tr>
+        <tr><td>EliteFunnels</td><td>Marketing automation and transactional email infrastructure.</td></tr>
+        <tr><td>GetStaffFlow</td><td>Workforce/HR SaaS with role-based access control.</td></tr>
+        <tr><td>FindCaregiver</td><td>Caregiver marketplace with scheduling and Stripe payments.</td></tr>
+        <tr><td>EliteFarms</td><td>AI-assisted farm management for agriculture projects in Africa.</td></tr>
+        <tr><td>KairosOS</td><td>Personal AI decision and memory system that runs on local LLM infrastructure (Ollama).</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="mono" style="color:var(--muted);margin-top:12px">Stack: Next.js · React · TypeScript · Node.js/Express · Python FastAPI · Celery</p>
+  </div>
+</section>
 
-    <button onclick="history.back()">Go Back</button>
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">Experience</div>
+    <h2>Career path</h2>
+    <p class="lede">I came up through software. I started in mobile development and digital products, moved into systems and infrastructure, and then specialized in CI/CD, Kubernetes and infrastructure automation. I have 10+ years in IT, including 7+ years focused on DevOps and platform work.</p>
+    <!-- TODO(Franklin): add exact start/end years to each entry so they match LinkedIn and your résumé. -->
+    <ol class="timeline">
+      <li>
+        <div class="when">2025 – present</div>
+        <h3>Platform Architect &amp; Infrastructure Lead · Elites Systems</h3>
+        <p>Founded Elites Systems, a cloud consulting company. I designed and run the ElitesCloud platform and the products on it.</p>
+      </li>
+      <li>
+        <div class="when">Current</div>
+        <h3>Senior DevOps / SRE Engineer, Team Lead · Dominion Systems</h3>
+        <p>I lead an 8-person team, have been project lead on several delivery projects, and own CI/CD, Kubernetes and infrastructure automation.</p>
+      </li>
+      <li>
+        <div class="when">Ongoing</div>
+        <h3>Founder &amp; Instructor · CloudMastersHub</h3>
+        <p>I teach Git, AWS, Kubernetes, Terraform and DevOps through a learning platform and YouTube channel. Mentoring and explaining systems clearly are a core part of how I work.</p>
+      </li>
+      <li>
+        <div class="when">Earlier</div>
+        <h3>Mobile developer &amp; team lead · Software and digital products</h3>
+        <p>Built Android apps and led an Android development team, plus web and design work. That's where my habits for automation and shipping came from.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ CERTS + SKILLS ============ -->
+<section id="certs">
+  <div class="wrap">
+    <div class="eyebrow">Credentials</div>
+    <h2>Certifications</h2>
+    <p class="lede">Each one links to a credential I can verify.</p>
+    <div class="grid2">
+      <div class="card cert">
+        <span class="issuer">Amazon Web Services</span>
+        <h3>AWS Certified Solutions Architect – Professional</h3>
+        <!-- TODO(Franklin): replace href with your Credly badge URL -->
+        <a href="https://www.linkedin.com/in/folefacfm/details/certifications/" target="_blank" rel="noopener">Verify credential →</a>
+      </div>
+      <div class="card cert">
+        <span class="issuer">CompTIA</span>
+        <h3>CompTIA Security+ ce</h3>
+        <!-- TODO(Franklin): replace href with your Credly / CompTIA verification URL -->
+        <a href="https://www.linkedin.com/in/folefacfm/details/certifications/" target="_blank" rel="noopener">Verify credential →</a>
+      </div>
+    </div>
+
+    <h2 style="margin-top:48px">Core technologies</h2>
+    <dl class="skills">
+      <dt>Cloud &amp; IaC</dt><dd>AWS, Terraform, Ansible, libvirt/KVM, Ubuntu Linux, Bash, Python</dd>
+      <dt>Orchestration</dt><dd>Kubernetes (kubeadm), containerd, Helm, external etcd</dd>
+      <dt>Networking</dt><dd>Calico, BGP, VXLAN, MetalLB, NGINX Ingress, HAProxy, Tailscale, Cloudflare Tunnel, mTLS</dd>
+      <dt>CI/CD &amp; GitOps</dt><dd>GitHub, Jenkins, Docker, Buildx, ArgoCD, SonarQube, Maven</dd>
+      <dt>Data</dt><dd>PostgreSQL / CloudNativePG, MongoDB, Redis, Qdrant, MinIO, NFS</dd>
+      <dt>Observability</dt><dd>Prometheus, Grafana, Alertmanager, PagerDuty</dd>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 style="color:var(--text);margin-bottom:.5rem">Let's talk</h2>
+    <p>I'm open to Senior DevOps, SRE, Platform and Cloud Engineering roles. I'll happily draw this architecture on a whiteboard and walk through the trade-offs.</p>
+    <div class="cta" style="margin:18px 0 32px">
+      <a class="btn primary" href="mailto:mbuaku@gmail.com">mbuaku@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/folefacfm/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/elites-systems" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="row">
+      <span>© 2026 Franklin Folefac Mbuaku · Beaumont, California</span>
+      <span class="mono">Hand-built static page · served by GitHub Pages</span>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
-
